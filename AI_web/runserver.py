@@ -1,5 +1,5 @@
 """
-This script runs the AI_web application using a development server.
+This script runs the web application using a development server.
 """
 
 from os import environ
