@@ -33,6 +33,7 @@ feature_columns = [tensorflow.feature_column.numeric_column("total_rooms")]
 targets = california_housing_dataframe["median_house_value"]
 
 #选择参数优化算法
+#GradientDescent 梯度下降
 my_optimizer = tensorflow.train.GradientDescentOptimizer(learning_rate=0.0000001)
 my_optimizer = tensorflow.contrib.estimator.clip_gradients_by_norm(my_optimizer,5.0)
 
