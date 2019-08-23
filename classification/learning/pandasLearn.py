@@ -24,8 +24,8 @@ print("\nhead:\n", california_housing_dataFrame.head())
 # 获取绘图后台使用的库
 print(matplotlib.get_backend())
 # 修改后台绘图库的方法：https://vra.github.io/2017/06/13/mpl-backend/  有些不起作用
-# 默认绘图库有问题，主动设定使用Qt5Agg就能显示出图像，有人说TkAgg也可以，但是这里不行,应该是缺包
-matplotlib.use('Qt5Agg')
+# pycharm的绘图库有问题，主动设定使用Qt5Agg就能显示出图像；设置成弹出窗口显示图像会调用TkAgg，也能正常显示图像
+# matplotlib.use('Qt5Agg')
 # 画图
 california_housing_dataFrame.hist('housing_median_age')
 
@@ -37,7 +37,7 @@ print(people[0:2])
 # numpy 运算
 print(age / 10)
 
-# lambda 函数是映射函数，age中每一个值都会应用冒号后的函数
+# lambda 函数是映射函数，创建匿名函数，eachAge相当于输入参数，eachAge > 21是函数体以及返回值
 isBigAge = age.apply(lambda eachAge: eachAge > 21)
 print(isBigAge)
 

@@ -10,10 +10,9 @@ import pandas as pandas
 import tensorflow as tf
 
 from tensorflow.python.data import Dataset
+from learning.AIConfig import AIConfig
 
-tf.logging.set_verbosity(tf.logging.ERROR)
-pandas.options.display.max_rows = 10;
-pandas.options.display.float_format = '{:.1f}'.format
+config = AIConfig()
 
 california_housing_dataFrame = pandas.read_csv(
     "https://download.mlcc.google.cn/mledu-datasets/california_housing_train.csv", sep=",")
