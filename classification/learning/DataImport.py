@@ -3,9 +3,9 @@ import numpy as numpy
 
 
 class DataImport():
-    def dataImport(self, link, sep):
+    def dataImport(self, link, sep, reindex):
         dataframe = pandas.read_csv(
             link, sep=sep)
-        dataframe = dataframe.reindex(
-            numpy.random.permutation(dataframe.index))
+        if reindex:
+            dataframe = dataframe.reindex(numpy.random.permutation(dataframe.index))
         return dataframe

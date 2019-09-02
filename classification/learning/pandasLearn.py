@@ -26,8 +26,10 @@ print(matplotlib.get_backend())
 # 修改后台绘图库的方法：https://vra.github.io/2017/06/13/mpl-backend/  有些不起作用
 # pycharm的绘图库有问题，主动设定使用Qt5Agg就能显示出图像；设置成弹出窗口显示图像会调用TkAgg，也能正常显示图像
 # matplotlib.use('Qt5Agg')
-# 画图
+# hist画直方图
 california_housing_dataFrame.hist('housing_median_age')
+predict_label = "median_house_value"
+targets = california_housing_dataFrame[predict_label].astype('float32')
 
 print(type(people['names']))
 print(people['names'][0:2])
@@ -68,3 +70,4 @@ print(people)
 # 数据不规整有丢失的索引时，不必担心输入被清理?
 people = people.reindex([0, 4, 2, 6])
 print(people)
+print(targets)
