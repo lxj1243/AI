@@ -18,9 +18,9 @@ print(dataframe)
 # 以下两个featuredict有微妙的区别，第一个只在key上有迭代，第二个同时以key和value迭代
 # https://stackoverflow.com/questions/3294889/iterating-over-dictionaries-using-for-loops/3294899#3294899
 featuredict = dict(dataframe)
-# print(featuredict)
+#print(featuredict)
 featuredict = dict(dataframe).items()
-# print(featuredict)
+print(featuredict)
 #for key, value in featuredict:
   #  print("key is:",key,"\n","value is:",value,"value end")
 # 谜之赋值方式，遍历字典类型数据featuredict中的键值对，对值（value）应用numpy的生成数组方法

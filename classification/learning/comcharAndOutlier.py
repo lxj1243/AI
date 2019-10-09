@@ -57,7 +57,7 @@ def my_input_fn(features, targets, batch_size=1, shuffle=True, num_epochs=None):
     # 原文链接：https://blog.csdn.net/briblue/article/details/80962728
     # return下一个batch
     features, labels = dataset.make_one_shot_iterator().get_next()
-    # 这里返回两个一样的数据可能是因为SKlearn库里函数的要求？
+    # 这里返回两个一样的数据可能是因为tf库里函数的要求？
     return features, labels
 
 
