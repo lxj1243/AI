@@ -11,6 +11,9 @@ import tensorflow as tf
 
 from tensorflow.python.data import Dataset
 # from learning import AiConfig,DataImport 不行...
+# import learning.AIConfig as AIConfig 也不行
+# import learning.DataImport as DataImport 还是不行
+# 不行的原因是我把包里的__init__.py文件给删了！！！有这个文件才会被识别为包
 from learning.AIConfig import AIConfig
 from learning.DataImport import DataImport
 
@@ -36,6 +39,7 @@ def my_input_fn(features, targets, batch_size=1, shuffle=True, num_epochs=None):
     :return:
     """
 
+    # dict(features)的（k,v）列表只在k上有迭代
     # dict(features).items()在输入数据上建立（key，value）迭代器，value是一列值（series）
     # <print打印value出来还有index和统计信息，但是array方法用过后这些就print不出来了>
     # 对于每一个（key，value） numpy.array(value）把value转换成数组，（key，value<array>）
@@ -79,7 +83,9 @@ def train_model(learning_rate, steps, batch_size, input_feature):
     # my_feature = input_feature
     # input_feature_data = dataframe[[my_feature]].astype('float32')
     # 像上面那样写的意义是啥？
-    # [[feature]] 跟[feature] 好像功效是一样的，前者print没有后缀信息，后者print有后缀信息
+    # dataframe['w']选择'w'列，使用类字典属性,返回的是Series类型
+    # dataframe.w 选择表格中的'w'列，使用点属性,返回的是Series类型
+    # dataframe[['w']]选择表格中的'w'列，返回的是DataFrame
     input_feature_data = dataframe[[input_feature]].astype('float32')
     # 要预测的标签
     predict_label = "median_house_value"
@@ -173,19 +179,19 @@ dataframe["rooms_per_person"] = dataframe["total_rooms"] / dataframe["population
 
 # 未截取离群值，训练模型
 calibration_data = train_model(learning_rate=0.05, steps=500, batch_size=5, input_feature="rooms_per_person")
-pyplot.figure(figsize=(15,6))
-pyplot.subplot(1,2,1)
-pyplot.scatter(calibration_data["predictions"],calibration_data["targets"])
-pyplot.subplot(1,2,2)
+pyplot.figure(figsize=(15, 6))
+pyplot.subplot(1, 2, 1)
+pyplot.scatter(calibration_data["predictions"], calibration_data["targets"])
+pyplot.subplot(1, 2, 2)
 # 为什么要给下划线赋值？？？
 _ = dataframe["rooms_per_person"].hist()
 
 # 截取离群值
-dataframe["rooms_per_person"]=dataframe["rooms_per_person"].apply(lambda x:min(x,5))
+dataframe["rooms_per_person"] = dataframe["rooms_per_person"].apply(lambda x: min(x, 5))
 # 截取离群值后，训练模型
 calibration_data = train_model(learning_rate=0.05, steps=500, batch_size=5, input_feature="rooms_per_person")
-pyplot.figure(figsize=(15,6))
-pyplot.subplot(1,2,1)
-pyplot.scatter(calibration_data["predictions"],calibration_data["targets"])
-pyplot.subplot(1,2,2)
+pyplot.figure(figsize=(15, 6))
+pyplot.subplot(1, 2, 1)
+pyplot.scatter(calibration_data["predictions"], calibration_data["targets"])
+pyplot.subplot(1, 2, 2)
 _ = dataframe["rooms_per_person"].hist()

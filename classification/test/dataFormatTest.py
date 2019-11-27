@@ -13,16 +13,37 @@ dataframe = pandas.read_csv(
             "https://download.mlcc.google.cn/mledu-datasets/california_housing_train.csv", sep=",")
 # dataframe = dataframe.reindex(numpy.random.permutation(dataframe.index))
 dataframe["median_house_value"] /= 1000.0
-print(dataframe)
+# print(dataframe)
 # 花括号代表字典数据类型 dict = {'jon':'boy','lili"':'girl'}
 # 以下两个featuredict有微妙的区别，第一个只在key上有迭代，第二个同时以key和value迭代
 # https://stackoverflow.com/questions/3294889/iterating-over-dictionaries-using-for-loops/3294899#3294899
 featuredict = dict(dataframe)
 #print(featuredict)
 featuredict = dict(dataframe).items()
-print(featuredict)
+# print(featuredict)
 #for key, value in featuredict:
   #  print("key is:",key,"\n","value is:",value,"value end")
 # 谜之赋值方式，遍历字典类型数据featuredict中的键值对，对值（value）应用numpy的生成数组方法
 data = {key: numpy.array(value) for key, value in featuredict}
 #print(data)
+
+
+name_id = {'XiaoMing':11001, 'ZhangHong':11002, 'ZhaoLi':11003}
+for value in name_id:
+    pass
+#    print(value)
+
+for key,value in name_id.items():
+    pass
+#    print(key, " ", value)
+
+for value in name_id.values():
+    pass
+#    print(value)
+
+# 神奇的赋值方式
+features = {key: numpy.array(value) for key, value in name_id.items()}
+# print(features)
+# print(isinstance(features, dict))
+data = dataframe[["median_house_value"]]
+print(type(data))
