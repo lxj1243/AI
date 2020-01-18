@@ -19,10 +19,10 @@ def CFlogisticregression(theta, X, Y):
     Y = np.ndarray(Y)
 
     # y=1时的代价函数
-    firstpart = np.multiply(-Y,np.log(lr.sigmoid(np.multiply(theta.T, X))))
+    firstpart = np.multiply(-Y,np.log(lr.sigmoid(np.multiply(X,theta.T))))
     # firsrtpart = -Y*np.log(sigmoid(theta.T*X)
 
     # y=0时的代价函数
-    secondpart = np.multiply(1-Y,np.log(1-lr.sigmoid(np.multiply(theta.T,X))))
+    secondpart = np.multiply(1-Y,np.log(1-lr.sigmoid(np.multiply(X,theta.T))))
     # secondpart = (1-Y)*np.log(1-sigmoid(theta.T*X)
     return
